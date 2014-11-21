@@ -106,13 +106,13 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
     console.log(String.fromCharCode(e.keyCode)+" pressed")
     switch (e.keyCode) {
         //退出浮框
-        case 13:
         case 27:
             $('div.popover-crx').remove();
             return;
         //the chinese definitions C
         case 67:
         case 99:
+            $("#summary-box .summary-table .definition.span4").toggle();
             $('div.cndf').toggle();
             return;
         //the English definitions G
@@ -174,6 +174,20 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
         case 120:
             $('div#affix').toggle();
             return;
+
+        //Enter to next word
+        case 13:
+            var $choices = $('#choices li.answer');
+            //Shortcut for continue button
+            if ($('#review #learning-box .continue.continue-button').length>0) {
+                $('#review #learning-box .continue.continue-button')[0].click();
+            } else {
+                if(0 == $choices.length) $('#review a.known')[0].click()
+                else $choices[0].click();
+            }
+            return;
+
+
         //I to ignore
         case 73:
         case 74:
@@ -228,4 +242,3 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
 
     event.stopPropagation();
 });
-
