@@ -182,8 +182,11 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
             if ($('#review #learning-box .continue.continue-button').length>0) {
                 $('#review #learning-box .continue.continue-button')[0].click();
             } else {
-                if(0 == $choices.length) $('#review a.known')[0].click()
-                else $choices[0].click();
+                if(0 == $choices.length) {
+                  if($('#review a.unknown').length>0) $('#review a.unknown')[0].click();
+                } else {
+                  $choices[0].click();
+                }
             }
             return;
 
