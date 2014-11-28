@@ -178,16 +178,23 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
         //Enter to next word
         case 13:
             var $choices = $('#choices li.answer');
-            //Shortcut for continue button
-            if ($('#review #learning-box .continue.continue-button').length>0) {
+
+            if ($choices.length > 0) {
+                // the 1st choice in the learning page
+                $choices[0].click();
+            } else if (0 == $choices.length &&
+              $('#review a.known').length>0 &&
+              $('#review #learning-box .continue.continue-button').length==0) {
+                // the known button in the review page
+                $('#review a.known')[0].click();
+            } else if ($('#review #learning-box .continue.continue-button').length>0) {
+                // continue button in the detail page
                 $('#review #learning-box .continue.continue-button')[0].click();
-            } else {
-                if(0 == $choices.length) {
-                  if($('#review a.unknown').length>0) $('#review a.unknown')[0].click();
-                } else {
-                  $choices[0].click();
-                }
+            } else if ($('#review #summary-box .continue.continue-button').length>0) {
+                // continue button in the summary page
+                $('#review #summary-box .continue.continue-button')[0].click();
             }
+
             return;
 
 
