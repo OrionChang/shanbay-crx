@@ -57,6 +57,46 @@ function searchOnline() {
         findDerivatives();
     }
 }
+
+function pronounceIfInSummaryPage(key) {
+    var speakers = $("#summary-box .sound .speaker");
+    if (speakers.length > 0) {
+      var index;
+
+      switch (key) {
+        case 49:
+          index = 0;
+          break;
+        case 50:
+          index = 1;
+          break;
+        case 51:
+          index = 2;
+          break;
+        case 52:
+          index = 3;
+          break;
+        case 53:
+          index = 4;
+          break;
+        case 54:
+          index = 5;
+          break;
+        case 55:
+          index = 6;
+          break;
+        case 56:
+          index = 7;
+          break;
+      }
+
+      if (index < speakers.length) {
+        speakers[index].click();
+      }
+    }
+
+}
+
 $(document).on("DOMNodeInserted", '#learning-box',function () {
 //    console.log('handling definitions')
     var $definitions = $('#review-definitions');
@@ -206,7 +246,16 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
             }
 
             return;
-
+        case 49:
+        case 50:
+        case 51:
+        case 52:
+        case 53:
+        case 54:
+        case 55:
+        case 56:
+            pronounceIfInSummaryPage(e.keyCode);
+            return;
 
         //I to ignore
         case 73:
