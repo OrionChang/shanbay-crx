@@ -112,7 +112,17 @@ $(document).on("DOMNodeInserted", '#learning-box',function () {
         //the chinese definitions C
         case 67:
         case 99:
-            $("#summary-box .summary-table .definition.span4").toggle();
+            // $("#summary-box .summary-table .definition.span4").toggle();
+
+            if ($("#summary-box .summary-table tr").length > 0) {
+              $.each($("#summary-box .summary-table tr"), function(k,v){
+                var pronunciation = $(v).children(".sound")[0].title;
+                var definition = $(v).children(".definition.span4")[0].innerHTML;
+                $(v).children(".sound")[0].title = definition;
+                $(v).children(".definition.span4")[0].innerHTML = pronunciation;
+              });
+            }
+
             $('div.cndf').toggle();
             return;
         //the English definitions G
